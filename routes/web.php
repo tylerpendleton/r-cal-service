@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/busy', function () {
-    $startDate = Carbon::now();
+    $startDate = Carbon::now()->startOfDay();
     $endDate = Carbon::now()->endOfDay();
     $busyTimes = CalendarService::getCalendarBusyTimes($startDate, $endDate);
     return $busyTimes;
