@@ -18,8 +18,7 @@ class CalendarService
     public static function getCalendarBusyTimes(Carbon $startDate, Carbon $endDate)
     {
         $timezone = CalendarService::getCalendarTimezone(); 
-        $startDate = $startDate->minute < 30 ? $startDate->startOfHour() : $startDate->minute(30);
-        $period = CarbonPeriod::since($startDate->tz($timezone))->hours(1)->until($endDate->tz($timezone));
+        $period = CarbonPeriod::since($startDate->startOfHour()->tz($timezone))->hours(1)->until($endDate->tz($timezone));
         $hoursBusy = [8,9,12,14,16];
 
         $dates = [];
@@ -31,7 +30,7 @@ class CalendarService
             if($isBusy > -1) {
                 $dates[] = collect([
                     'start_date' => $date,
-                    'end_date' => $date->addHour()
+                    'end_date' => $date->copy()->addHour()
                 ]);
             }
         }
