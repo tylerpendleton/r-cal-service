@@ -13,7 +13,7 @@ class CalendarService
      *
      * @param Carbon $startDate
      * @param Carbon $endDate
-     * @return void
+     * @return array
      */
     public static function getCalendarBusyTimes(Carbon $startDate, Carbon $endDate)
     {
@@ -28,14 +28,14 @@ class CalendarService
             $isBusy = array_search($date->hour, $hoursBusy);
     
             if($isBusy > -1) {
-                $dates[] = collect([
+                $dates[] = [
                     'start_date' => $date,
                     'end_date' => $date->copy()->addHour()
-                ]);
+                ];
             }
         }
 
-        return collect($dates);
+        return $dates;
     }
 
     /**
