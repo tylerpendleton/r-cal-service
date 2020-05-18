@@ -1,8 +1,5 @@
 <?php
 
-use App\Services\Calendar\CalendarService;
-use Illuminate\Support\Carbon;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,15 +13,4 @@ use Illuminate\Support\Carbon;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/busy', function () {
-    $startDate = Carbon::now()->startOfDay();
-    $endDate = Carbon::now()->endOfDay();
-    $busyTimes = CalendarService::getCalendarBusyTimes($startDate, $endDate);
-    return $busyTimes;
-});
-
-Route::get('/free', function () {
-   return [ 'error' => 'Unable to process request'];
 });
