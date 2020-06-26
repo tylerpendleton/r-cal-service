@@ -2,7 +2,7 @@
 
 ## The Problem
 
-A User can book a Relocity Service through the Relocity mobile and web application.  They select a date, then an available time, and then book the service. 
+A User can book a Relocity Service, with a host, through the Relocity mobile and web application.  They select a date, then an available time, and then book the service. 
 
 ### Facts
 
@@ -13,4 +13,4 @@ A User can book a Relocity Service through the Relocity mobile and web applicati
 
 ### Challenge
 
-Create a method that will return a list of available start times on a particluar date.
+Create a method that will return a list of free times, in which the host is available, between two dates.
