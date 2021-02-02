@@ -5,7 +5,6 @@ namespace App\Services\Calendar;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
-
 class CalendarService
 {
     /**
@@ -17,20 +16,19 @@ class CalendarService
      */
     public static function getCalendarBusyTimes(Carbon $startDate, Carbon $endDate)
     {
-        $timezone = CalendarService::getCalendarTimezone(); 
+        $timezone = self::getCalendarTimezone();
         $period = CarbonPeriod::since($startDate->startOfHour()->tz($timezone))->hours(1)->until($endDate->tz($timezone));
-        $hoursBusy = [8,9,12,14,16];
+        $hoursBusy = [8, 9, 12, 14, 16];
 
         $dates = [];
 
         foreach ($period as $date) {
-            
             $isBusy = array_search($date->hour, $hoursBusy);
-    
-            if($isBusy > -1) {
+
+            if ($isBusy > -1) {
                 $dates[] = [
                     'start_date' => $date,
-                    'end_date' => $date->copy()->addHour()
+                    'end_date' => $date->copy()->addHour(),
                 ];
             }
         }
@@ -41,9 +39,10 @@ class CalendarService
     /**
      * Returns the Calendar Timezone setting.
      *
-     * @return String
+     * @return string
      */
-    public static function getCalendarTimezone(){
+    public static function getCalendarTimezone()
+    {
         return 'America/Los_Angeles';
     }
 }
