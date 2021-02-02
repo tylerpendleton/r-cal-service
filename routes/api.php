@@ -1,8 +1,8 @@
 <?php
 
+use App\Services\Calendar\CalendarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Services\Calendar\CalendarService;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,7 @@ Route::get('/busy', function () {
     $startDate = Carbon::now()->startOfDay();
     $endDate = Carbon::now()->endOfDay();
     $busyTimes = CalendarService::getCalendarBusyTimes($startDate, $endDate);
+
     return $busyTimes;
 });
 
