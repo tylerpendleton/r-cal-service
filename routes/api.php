@@ -1,8 +1,8 @@
 <?php
 
-use App\Services\Calendar\CalendarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Services\Calendar\CalendarService;
 
 /*
 |--------------------------------------------------------------------------
