@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Services\Calendar\CalendarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Services\Calendar\CalendarService;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,11 @@ Route::get('/busy', function () {
     return $busyTimes;
 });
 
+// Controller would accept variables here, assuming same request as /busy endpoint
 Route::get('/free', function () {
-    return ['error' => 'Unable to process request'];
+    $startDate = Carbon::now()->startOfDay();
+    $endDate = Carbon::now()->endOfDay();
+    $busyTimes = CalendarService::getCalendarBusyTimes($startDate, $endDate);
+
+    return CalendarService::getCalendarFreeTimes($startDate, $endDate, $busyTimes);
 });
